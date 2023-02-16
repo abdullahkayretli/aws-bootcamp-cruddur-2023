@@ -9,15 +9,54 @@ I jumped into the **IAM** dashboard and created a **User group** named as "ADMIN
 I gave **AdministratosAccess** permisions to this group.
 Finaly, I created a new user, and added to the Admin group.
 ***
-### Create a Billing Alarm
+### Create a Billing Alarm via AWS Console
 I watched the video for [**Chirag's Week 0 - Spend Considerations**](https://www.youtube.com/watch?v=OVw3RrlP-sI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=13) and set my billing alarm with $5 max. Here is the screenshot of the alarm  I created.
 ![Alt text](../_docs/assets/Billing%20Alarm.jpg)
 I added the step by step instruction for this at the end of the page under the [**Instructions**](#steps-to-create-a-billing-alarm-on-aws)
+
+### Create a Billing Alarm via AWS CLI
+First I created an SNS topic and got the topic-arn. Here is the code:
+
+```
+aws sns create-topic --name billing-alarm
+```
+Then I created a subscription. Used the code below,
+
+```
+aws sns subscribe \
+    --topic-arn ***your topic-arn, that you got in the step above***\
+    --protocol email \
+    --notification-endpoint ***the email you want to subscribe***
+```
+
+Finally I created theAlarm with the JSON file listed below, that I created before. Ran the CLI code below. 
+- [alarm-config.json](../aws/json/alarm-config.json)\
+More information about the JSON file click
+[ here](https://aws.amazon.com/premiumsupport/knowledge-center/cloudwatch-estimatedcharges-alarm/).\
+
+Run the CLI code below.
+```
+aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm-config.json
+```
+
 ***
-### Create a Budget
+### Create a Budget via AWS Console
 After watched the video above, I set my budget to $10 per month. Here is the screenshot for the budget at AWS.
 ![Alt text](../_docs/assets/AWS%20Budget.jpg)
-Step by step [**instruction**](#steps-to-set-up-a-budget-on-aws) is below as well. 
+Step by step [**instruction**](#steps-to-set-up-a-budget-on-aws) via AWS console is below as well. 
+
+### Create a budget via AWS CLI
+After I created the json files listed below, I typed the folllowing code to create a budget with $10 and 80% treshold.
+- [budget.json](../aws/json/budget.json)
+- [budget-notifications-with-subscribers.json](../aws/json/budget-notifications-with-subscribers.json)\
+  More information about the JSON files click [here](https://docs.aws.amazon.com/cli/latest/reference/budgets/create-budget.html#examples).
+```
+aws budgets create-budget \
+    --account-id **your-AWS-account-id** \
+    --budget file://aws/json/budget.json \
+    --notifications-with-subscribers file://aws/json/budget-notifications-with-subscribers.json
+```
+
 ***
 ### Installed AWS CLI and Generate AWS Credentials
 On my local device I already installed AWS CLI that I was using before. Here is the proof for it.
@@ -59,6 +98,8 @@ And here is the more detailed representation of a system a logical diagram. [Cli
 ![Alt text](../_docs/assets/Cudder%20Logical%20Diagram.jpeg)
 
 ***
+[AWS CLI reference-Budget](https://docs.aws.amazon.com/cli/latest/reference/budgets/create-budget.html#examples)
+
 
 
 # Instructions
