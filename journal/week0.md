@@ -22,9 +22,9 @@ Step by step [**instruction**](#steps-to-set-up-a-budget-on-aws) is below as wel
 ### Installed AWS CLI and Generate AWS Credentials
 On my local device I already installed AWS CLI that I was using before. Here is the proof for it.
 ![Alt text](../_docs/assets/AWS%20CLI%20local.jpg)\
-As it stands in the business scenario that fractional CTO has asked that everything be developed in Gitpod, I set my Gitpod account aswell.\
+As it stands in the business scenario that fractional CTO has asked that everything be developed in Gitpod,so I set my Gitpod account aswell.\
 I have realized that I did not have MFA on my GitHub, first I set it up. Step by step [**instruction**](#steps-to-enable-multi-factor-authentication-on-github) is below.\
-Then created a workspace at Gitpod with my GitHub repository. \
+Then I created a workspace at Gitpod with my GitHub repository. \
 I installed the AWS to the /workspace directory and configured with the code below. [**Installing AWS CLI**](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
   
 ```
@@ -94,11 +94,11 @@ After you've completed these steps, your budget will be created, and you will re
 
 ## Steps to Enable Multi-Factor Authentication on GitHub
 
-  1. Sign in to your GitHub account.
-  2. Click on your profile picture in the top right corner of the screen and select "**Settings**" from the dropdown menu.
-  3. In the left-hand menu, click on "**Password and authentication**".
-  4. Scroll down and click on the "**Two-factor authentication**" button.
-  5. Click the "**Set up two-factor authentication**" button.
-  6. Choose the type of authentication you want to use. GitHub supports several methods, including text message (SMS), authenticator app, or a hardware security key.
-  7. Follow the instructions for the chosen method to set up your authentication.
+1. Sign in to your GitHub account.
+2. Click on your profile picture in the top right corner of the screen and select "**Settings**" from the dropdown menu.
+3. In the left-hand menu, click on "**Password and authentication**".
+4. Scroll down and click on the "**Two-factor authentication**" button.
+5. Click the "**Set up two-factor authentication**" button.
+6. Choose the type of authentication you want to use. GitHub supports several methods, including text message (SMS), authenticator app, or a hardware security key.
+7. Follow the instructions for the chosen method to set up your authentication.
 ***
