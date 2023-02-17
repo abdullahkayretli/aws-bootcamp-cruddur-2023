@@ -60,11 +60,15 @@ aws budgets create-budget \
 ***
 ### Installed AWS CLI and Generate AWS Credentials
 On my local device I already installed AWS CLI that I was using before. Here is the proof for it.
-![Alt text](../_docs/assets/AWS%20CLI%20local.jpg)\
-As it stands in the business scenario that fractional CTO has asked that everything be developed in Gitpod,so I set my Gitpod account aswell.\
-I have realized that I did not have MFA on my GitHub, first I set it up. Step by step [**instruction**](#steps-to-enable-multi-factor-authentication-on-github) is below.\
-Then I created a workspace at Gitpod with my GitHub repository. \
-I installed the AWS to the /workspace directory and configured with the code below. [**Installing AWS CLI**](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+![Alt text](../_docs/assets/AWS%20CLI%20local.jpg)
+<p>As it stands in the business scenario that fractional CTO has asked that everything be developed in Gitpod,so I set my Gitpod account aswell.
+</p>
+
+I have realized that I did not have MFA on my GitHub, first I set it up. Step by step [**instruction**](#steps-to-enable-multi-factor-authentication-on-github) is below.
+<p>Then I created a workspace at Gitpod with my GitHub repository. 
+</p>
+
+I installed the AWS to the /workspace directory and configured with the code below. [**Installing AWS CLI**](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
   
 ```
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -79,10 +83,15 @@ aws --version
 aws
 aws sts get-caller-identity
 ```
-![Alt text](../_docs/assets/AWS%20CLI%20at%20Gitpod.jpg)\
-Before the configuration, I switched to my AWS account and created new Access Key and Secret just for Gitpod. In case in the future if I want to destroy the access key, it will be much easier.\
-Lastly, for the future log-ins, to set as desired I have updated the [gitpod.yaml](../.gitpod.yml). Which will install the AWS CLI to the desired location.\
-Finally, I needed to set env variables for Acces Key, Secret and Region at gitpod settings. [**Env vars for AWS**](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+![Alt text](../_docs/assets/AWS%20CLI%20at%20Gitpod.jpg)
+<p>Before the configuration, I switched to my AWS account and created new Access Key and Secret just for Gitpod. In case in the future if I want to destroy the access key, it will be much easier.</p>
+<p>Lastly, for the future log-ins, to set as desired I have updated the [gitpod.yaml](../.gitpod.yml). Which will install the AWS CLI to the desired location.
+</p>
+<p>Finally, I needed to set env variables for Acces Key, Secret and Region at gitpod settings. 
+</p>
+
+[**Env vars for AWS**](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
 ```
 export AWS_ACCESS_KEY_ID=******use your access key********
 export AWS_SECRET_ACCESS_KEY=******use your secret********
@@ -90,10 +99,18 @@ export AWS_DEFAULT_REGION=******your default region********
 ``` 
 ***
 ## Crudder Projects Architectual Diagrams
-Here is the early stage of the project as a conceptual diagram on the napkin.
+<p>A conceptual diagram and a logical diagram are both types of diagrams used in various fields to represent ideas, systems, and processes. However,their purposes and level of details are different.
+</p>
+<p>A conceptual diagram is a high-level representation of a system or process that provides an overview of its key concepts, relationships, and components. It is usually created in the early stages of a project.
+</p>
+Here is the conceptional diagram on the napkin.
+
 ![Alt text](../_docs/assets/Crudder%20-%20Conceptual%20Diagram.jpeg)
 
-And here is the more detailed representation of a system a logical diagram. [Click here to see the diagram at LucidCharts](https://lucid.app/lucidchart/071e9a22-afa0-40d0-b63c-4dcd91288699/edit?viewport_loc=-291%2C-442%2C3765%2C1826%2C0_0&invitationId=inv_8563f314-f9a4-4928-b8b2-9e241f693f94)	  
+<p>A logical diagram is a more detailed representation of a system or process that describes its logical components, functions, and relationships. It is typically created after the conceptual diagram and provides a more detailed view of the system.</p>
+And here is the more detailed representation of a system a logical diagram.
+
+[Click here to see the diagram at LucidCharts](https://lucid.app/lucidchart/invitations/accept/inv_8563f314-f9a4-4928-b8b2-9e241f693f94)	  
 	
 ![Alt text](../_docs/assets/Cudder%20Logical%20Diagram.jpeg)
 
@@ -116,7 +133,9 @@ And here is the more detailed representation of a system a logical diagram. [Cli
 8. Add a name and description for the alarm.
 9. Review the alarm details and click the "**Create alarm**" button.
 
-After you've completed these steps, your billing alarm will be created, and you will be notified when your charges exceed the threshold you set. You can also view and manage your billing alarms on the CloudWatch dashboard at any time.
+<p>After you've completed these steps, your billing alarm will be created, and you will be notified when your charges exceed the threshold you set. You can also view and manage your billing alarms on the CloudWatch dashboard at any time.
+</p>
+
 ***
 
 ## Steps to Set up a Budget on AWS
@@ -130,7 +149,9 @@ After you've completed these steps, your billing alarm will be created, and you 
 7. Choose the notifications you want to receive when your budget thresholds are met or exceeded. You can choose to receive notifications by email, SNS topic, or both.
 8. Review the budget details and click the "**Create**" button.
 
-After you've completed these steps, your budget will be created, and you will receive notifications when your budget thresholds are met or exceeded. You can also view your budget on the Budgets dashboard and make changes to it at any time.
+<p>After you've completed these steps, your budget will be created, and you will receive notifications when your budget thresholds are met or exceeded. You can also view your budget on the Budgets dashboard and make changes to it at any time.
+</p>
+
 ***
 
 ## Steps to Enable Multi-Factor Authentication on GitHub
