@@ -3,7 +3,7 @@
 ## Reqired Homework/ Tasks:
 ***
 ### Create an Admin User
-I watched the video for [**Ashish's Week 0 - Security Considerations**](https://www.youtube.com/watch?v=4EMWBYVggQI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=15).\
+I watched the video for [**Ashish's Week 0 - Security Considerations**](https://www.youtube.com/watch?v=4EMWBYVggQI&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=15:target="_blank").\
 I already created an AWS root account. It is not recommended to work on your AWS root account, so;\
 I jumped into the **IAM** dashboard and created a **User group** named as "ADMIN".\
 I gave **AdministratosAccess** permisions to this group.
