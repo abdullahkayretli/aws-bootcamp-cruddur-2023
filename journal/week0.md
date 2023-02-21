@@ -112,7 +112,7 @@ And here is the more detailed representation of a system a logical diagram.
 
 [Click here to see the diagram at LucidCharts](https://lucid.app/lucidchart/invitations/accept/inv_8563f314-f9a4-4928-b8b2-9e241f693f94)	  
 	
-![Alt text](../_docs/assets/Cudder%20Logical%20Diagram.jpeg)
+![Alt text](../_docs/assets/Crudder%20Logical%20Diagram.jpeg)
 
 ***
 [AWS CLI reference-Budget](https://docs.aws.amazon.com/cli/latest/reference/budgets/create-budget.html#examples)
