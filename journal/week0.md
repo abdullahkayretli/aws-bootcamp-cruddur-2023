@@ -117,7 +117,19 @@ And here is the more detailed representation of a system a logical diagram.
 ***
 [AWS CLI reference-Budget](https://docs.aws.amazon.com/cli/latest/reference/budgets/create-budget.html#examples)
 
+## Well-Architechted Framework
+A well-architected framework is a set of best practices and guidelines that can be used to design and operate reliable, secure, efficient, and cost-effective systems in the cloud. The framework provides a structured approach for architects, developers, and operators to evaluate architectures and design patterns, identify potential issues, and make informed decisions about how to design, deploy, and operate workloads in the cloud.
 
+### Five Pillars of Well-Architechted Framework
+1. **Operational Excellence:** This pillar focuses on how to run and manage systems to deliver business value.
+
+2. **Security:** This pillar focuses on protecting information and systems from potential threats.
+
+3. **Reliability:** This pillar focuses on ensuring systems can operate continuously and recover from failures.
+
+4. **Performance Efficiency:** This pillar focuses on optimizing the use of computing resources to meet performance requirements and minimize costs.
+
+5. **Cost Optimization:** This pillar focuses on how to achieve the best balance between cost and performance by taking advantage of cost-effective solutions.
 
 # Instructions
 
