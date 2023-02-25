@@ -25,3 +25,7 @@ opentelemetry-exporter-otlp-proto-http \
 opentelemetry-instrumentation-flask \
 opentelemetry-instrumentation-requests
 
+....
+
+npi install to the frontend
+docker-compose up
