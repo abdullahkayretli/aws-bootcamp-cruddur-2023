@@ -294,15 +294,10 @@ services:
 I added both yml configurations to docker-compose file.
 When we start docker-compose images will be built and containers will run.
 
-
-
-
-
 ***
 
-
 ## Homework Challenges    
-- Run the dockerfile CMD as an external script
+
 ### Push and tag a image to DockerHub (they have a free tier)
 All the commands:
 ```sh
@@ -312,16 +307,54 @@ docker image tag alpine:latest abdullahkayretli/aws-cloud-camp:latest #image wil
 docker login #login cedentials will be checked
 docker image push abdullahkayretli/aws-cloud-camp:latest #image will be pushed to the docke hub
 ```
-[Click here to reach the repo](https://hub.docker.com/r/abdullahkayretli/aws-cloud-camp/tags)
+[Click here to reach the dockerhub repo](https://hub.docker.com/r/abdullahkayretli/aws-cloud-camp/tags)
   ![Alt text](../_docs/assets/Push%20an%20Image%20to%20docker%20hub.jpg)
-  
-- Use multi-stage building for a Dockerfile build
+
+### Use multi-stage building for a Dockerfile build
+I will create an image and run a container will will run a simple Java app and will out put "Hello, Iam aJava console app"
+
+I created a docker folder and saved the [java source](../aws/Docker/source/testapp.java) code in it.
+Then created the [Dockerfile](../aws/Docker/Dockerfile) for **multistage** which is the combination of 2 docker files.
+
+```dockerfile
+FROM mcr.microsoft.com/java/jdk:8-zulu-alpine AS compiler
+COPY /source /usr/src/testapp
+WORKDIR /usr/src/testapp
+RUN javac testapp.java
+
+FROM mcr.microsoft.com/java/jre:8-zulu-alpine
+WORKDIR /testapp
+COPY --from=compiler /usr/src/testapp .
+CMD ["java", "testapp"]
+```
+Then these are the docker commands:
+```
+docker image build -t multistagebuilt .
+```
+![Alt text](../_docs/assets/docker-multi_stage.jpg)
+
+### Docker Desktop 
+Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces.
+With docker desktop you can manage images and containers easily. You can terminal to the containers, see the ports and manage them.
+![Alt text](../_docs/assets/Docker-desktop-images.jpg)
+![Alt text](../_docs/assets/Docker-desktop-containers.jpg)
+![Alt text](../_docs/assets/Docker-desktop-containers-terminal.jpg)
+
+### Docker installation on EC2
+Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes.
+
+
+
+***
+
+
+
+
+
+
+-  
+- Run the dockerfile CMD as an external script
 - Implement a healthcheck in the V3 Docker compose file
 - Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
-- Learn how to install Docker on your localmachine and get the same containers running outside of Gitpod / Codespaces
-- Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes. 
-
-
-
 
 
