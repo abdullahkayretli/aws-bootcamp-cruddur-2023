@@ -209,25 +209,90 @@ docker-compose up #to create all containers for both backend and frontend
 #make sure the port are public/open.
 docker-compose down #to remove all
 ```
+## Create the notification feature (Backend and Front)
 
-# the name flag is a hack to change the default prepend folder
-# name when outputting the image names
-networks: 
-  internal-network:
-    driver: bridge
-    name: cruddur
+I followed the [video](https://youtu.be/k-_o0cCpksk?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv) instructions and created the notification feature.
+Here is the screenshot:
+![Alt text](../_docs/assets/Cludder-Notification-Page.jpg)
 
+
+## Adding DynamoDB Local and Postgres
+Since we are working on Gitpod, we need to install postgres. It will be helpful if we add the installtion commend in to [gitpod.yml](../.gitpod.yml) file to have it installed automatically.
+
+```yml
+- name: postgres
+    init: |
+      curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+      echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+      sudo apt update
+      sudo apt install -y postgresql-client-13 libpq-dev
 ```
-docker-compose up
-# end of the class
-docker-compose down
+Before we build the containers we will build a dynamodb table with aws CLI:
+
+### Create a table
+[source](https://github.com/100DaysOfCloud/challenge-dynamodb-local/blob/main/README.md)
+```sh
+aws dynamodb create-table \
+    --endpoint-url http://localhost:8000 \
+    --table-name Music \
+    --attribute-definitions \
+        AttributeName=Artist,AttributeType=S \
+        AttributeName=SongTitle,AttributeType=S \
+    --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE \
+    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+    --table-class STANDARD
 ```
+### Create an Item
+```sh
+aws dynamodb put-item \
+    --endpoint-url http://localhost:8000 \
+    --table-name Music \
+    --item \
+        '{"Artist": {"S": "No One You Know"}, "SongTitle": {"S": "Call Me Today"}, "AlbumTitle": {"S": "Somewhat Famous"}}' \
+    --return-consumed-capacity TOTAL  
+```
+### List Tables
 
-
-
-
-
-
+```sh
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+Get Records
+aws dynamodb scan --table-name cruddur_cruds --query "Items" --endpoint-url http://localhost:8000
+```
+### Postgress service
+```yml
+services:
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+```
+### Dynamodb service
+```yml
+services:
+  dynamodb-local:
+    # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
+    # We needed to add user:root to get this working.
+    user: root
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+```
+I added both yml configurations to docker-compose file.
+When we start docker-compose images will be built and containers will run.
 
 
 
@@ -238,7 +303,18 @@ docker-compose down
 
 ## Homework Challenges    
 - Run the dockerfile CMD as an external script
-- Push and tag a image to DockerHub (they have a free tier)
+### Push and tag a image to DockerHub (they have a free tier)
+All the commands:
+```sh
+docker image pull alpine #alpine image will be installed
+docker image ls #It will show all installed/built images
+docker image tag alpine:latest abdullahkayretli/aws-cloud-camp:latest #image will be retagged with dockerhub_name/repository_name
+docker login #login cedentials will be checked
+docker image push abdullahkayretli/aws-cloud-camp:latest #image will be pushed to the docke hub
+```
+[Click here to reach the repo](https://hub.docker.com/r/abdullahkayretli/aws-cloud-camp/tags)
+  ![Alt text](../_docs/assets/Push%20an%20Image%20to%20docker%20hub.jpg)
+  
 - Use multi-stage building for a Dockerfile build
 - Implement a healthcheck in the V3 Docker compose file
 - Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
@@ -249,39 +325,3 @@ docker-compose down
 
 
 
-Create a table
-```
-aws dynamodb create-table \
-    --endpoint-url http://localhost:8000 \
-    --table-name Music \
-    --attribute-definitions \
-        AttributeName=Artist,AttributeType=S \
-        AttributeName=SongTitle,AttributeType=S \
-    --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE \
-    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-    --table-class STANDARD
-```
-   Create a table
-aws dynamodb create-table \
-    --endpoint-url http://localhost:8000 \
-    --table-name Music \
-    --attribute-definitions \
-        AttributeName=Artist,AttributeType=S \
-        AttributeName=SongTitle,AttributeType=S \
-    --key-schema AttributeName=Artist,KeyType=HASH AttributeName=SongTitle,KeyType=RANGE \
-    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-    --table-class STANDARD
-Create an Item
-aws dynamodb put-item \
-    --endpoint-url http://localhost:8000 \
-    --table-name Music \
-    --item \
-        '{"Artist": {"S": "No One You Know"}, "SongTitle": {"S": "Call Me Today"}, "AlbumTitle": {"S": "Somewhat Famous"}}' \
-    --return-consumed-capacity TOTAL  
-List Tables
-aws dynamodb list-tables --endpoint-url http://localhost:8000
-Get Records
-aws dynamodb scan --table-name cruddur_cruds --query "Items" --endpoint-url http://localhost:8000
-   
-   
-    https://github.com/100DaysOfCloud/challenge-dynamodb-local/blob/main/README.md
