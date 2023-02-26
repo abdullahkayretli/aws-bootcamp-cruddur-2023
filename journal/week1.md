@@ -394,7 +394,7 @@ I ran a container from it. See the steps in the following screenshot.
 Once I am done I ran:
 ```sh
 terraform destroy #not to be charged
-***
+```
 
 
 
