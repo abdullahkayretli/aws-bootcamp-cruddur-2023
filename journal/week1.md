@@ -300,7 +300,7 @@ When we start docker-compose images will be built and containers will run.
 - [Push and tag a image to DockerHub (they have a free tier)](#push-and-tag-a-image-to-dockerhub-they-have-a-free-tier)
 - [Use multi-stage building for a Dockerfile build](#use-multi-stage-building-for-a-dockerfile-build)
 - [Docker Desktop](#docker-desktop)
--[ Docker installation on EC2](#docker-installation-on-ec2)
+- [ Docker installation on EC2](#docker-installation-on-ec2)
 
 
 
