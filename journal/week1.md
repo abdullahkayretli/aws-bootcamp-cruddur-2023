@@ -297,6 +297,12 @@ When we start docker-compose images will be built and containers will run.
 ***
 
 ## Homework Challenges    
+- [Push and tag a image to DockerHub (they have a free tier)](#push-and-tag-a-image-to-dockerhub-they-have-a-free-tier)
+- [Use multi-stage building for a Dockerfile build](#use-multi-stage-building-for-a-dockerfile-build)
+- [Docker Desktop](#docker-desktop)
+-[ Docker installation on EC2](#docker-installation-on-ec2)
+
+
 
 ### Push and tag a image to DockerHub (they have a free tier)
 All the commands:
@@ -341,20 +347,54 @@ With docker desktop you can manage images and containers easily. You can termina
 ![Alt text](../_docs/assets/Docker-desktop-containers-terminal.jpg)
 
 ### Docker installation on EC2
-Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes.
+Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes.\
+I used the module I created before to create an instance and install docker on it.
+Here is the link for [module](https://registry.terraform.io/modules/abdullahkayretli/docker-instance/aws/latest) at terraform registry.\
+I created a [main.tf](..aws/../../aws/terraform/main.tf) file unteraws/terraform.
 
+```hcl
+module "docker-instance" {
+  source  = "abdullahkayretli/docker-instance/aws"
+  version = "0.0.1"
+  key_name = "Server-Key" # insert key name variable here
+}
+```
+After I complete main.tf, I typed the following commands:
 
+```sh
+terraform init # to install the provider and module
+#module will be installed and all the details of the module code can be seen under terraform/.terraform/module/docker-instance
+terraform plan # it will show waht resources will be created
+terraform apply -auto--aprove #instance will be created.
+```
+After the instance created, the following shell script will be run by terraform and install docker.
+```sh
+#!/bin/bash
+hostnamectl set-hostname ${server-name}
+yum update -y
+amazon-linux-extras install docker -y
+systemctl start docker
+systemctl enable docker
+usermod -a -G docker ec2-user
+# install docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" \
+-o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+```
+After the instance is up,
+```sh
+terraform state list #to see the list of resources added
+terraform state show module.docker-instance.data.aws_ami.amazon-linux-2 #to see the public IP of the instance
+ssh -i "Server-Key.pem" ec2-user@ec2-44-200-164-95.compute-1.amazonaws.com # ssh connection to EC2
+```
+I pulled the image that I pushed earlier to my docker hub.\
+I ran a container from it. See the steps in the following screenshot.
+![Alt text](../_docs/assets/Docker@ec2.jpg)
 
+Once I am done I ran:
+```sh
+terraform destroy #not to be charged
 ***
 
-
-
-
-
-
--  
-- Run the dockerfile CMD as an external script
-- Implement a healthcheck in the V3 Docker compose file
-- Research best practices of Dockerfiles and attempt to implement it in your Dockerfile
 
 
