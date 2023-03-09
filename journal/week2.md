@@ -26,33 +26,49 @@
 
 
 ***
-### Instrument Honeycomb with OTEL
+## Instrument Honeycomb with OTEL
+Click [here](https://docs.honeycomb.io/quickstart/#step-3-instrument-your-application-to-send-telemetry-data-to-honeycomb) to see the quickstart guide from HoneyComb documantation. We will follow the steps for python.
+
+### Step 1: Sign Up for Honeycomb
+I created the a free bootcamper account at honeycomb.io
+### Step 2: Instrument Your Application to Send Telemetry Data to Honeycomb
+
+- Install Packages
+To install these we will add them to the requirement.txt file and during the docker compose it will be installed.
+```
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-exporter-otlp-proto-http
+opentelemetry-instrumentation-flask
+opentelemetry-instrumentation-requests
+```
 
 
+
+- Set the API Key and Service Name
 You'll need to grab the API key from your honeycomb account:
 
+```
 export HONEYCOMB_API_KEY="SZnpSHqgx20eNChoZHUjrF"
 export HONEYCOMB_SERVICE_NAME="Cruddur"
+
 gp env HONEYCOMB_API_KEY="SZnpSHqgx20eNChoZHUjrF"
 gp env HONEYCOMB_SERVICE_NAME="Cruddur"
+```
+### Configuring OTEL (open telemetry) to send to HoneyComb
+OpenTelemetry, also known as OTel for short, is a vendor-neutral open-source Observability framework for instrumenting, generating, collecting, and exporting telemetry data such as traces, metrics, logs. As an industry-standard it is natively supported by a number of vendors.
 
-
-added to the docker compose under environment
-
-Add teh following Env Vars to backend-flask in docker compose
-
+- Add the following Env Vars to backend-flask in docker compose
+Added to the docker compose under environment. For more on OTEL click [here](https://opentelemetry.io/docs/)
+```
 OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
 OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
 OTEL_SERVICE_NAME: "${HONEYCOMB_SERVICE_NAME}"
-
+```
 
 Requirement is updated 
 
-opentelemetry-api
-opentelemetry-sdk \
-opentelemetry-exporter-otlp-proto-http \
-opentelemetry-instrumentation-flask \
-opentelemetry-instrumentation-requests
+
 
 ....
 
