@@ -79,16 +79,25 @@ from opentelemetry.instrumentation.requests import RequestsInstrumentor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
+
 
 # Initialize tracing and an exporter that can send data to Honeycomb
 provider = TracerProvider()
 processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
+
+# Show this in the logs within the backend-flask app (STDOUT)
+simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
+provider.add_span_processor(simple_processor)
+
 trace.set_tracer_provider(provider)
 tracer = trace.get_tracer(__name__)
 
+app = Flask(__name__)
+
+# HoneyComb ---------
 # Initialize automatic instrumentation with Flask
-app = flask.Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 ```
@@ -100,3 +109,13 @@ npm i
 ```
 
 - docker-compose up
+
+### See the trace in Honeycomb
+- Refresh the backend
+https://4567-abdullahkay-awsbootcamp-bpuzll0t21m.ws-us90.gitpod.io/api/activities/home
+
+![Alt text](../_docs/assets/Honeycomb%20Spans.png)
+
+### Troubleshooting
+-Make sure you are using the correct HoneyComb API key. To make sure you can check via:
+http://honeycomb-whoami.glitch.me/
