@@ -1,35 +1,3 @@
-Skip to content
-Search or jump to…
-Pulls
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@abdullahkayretli 
-omenking
-/
-aws-bootcamp-cruddur-2023
-Public
-generated from ExamProCo/aws-bootcamp-cruddur-2023
-Fork your own copy of omenking/aws-bootcamp-cruddur-2023
-Code
-Issues
-2
-Pull requests
-6
-Actions
-Projects
-Security
-Insights
-aws-bootcamp-cruddur-2023/backend-flask/app.py /
-@omenking
-omenking console tracing
-Latest commit b9b2a9f 30 minutes ago
- History
- 1 contributor
-146 lines (125 sloc)  4.47 KB
-
 from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
@@ -176,18 +144,3 @@ def data_activities_reply(activity_uuid):
 
 if __name__ == "__main__":
   app.run(debug=True)
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-aws-bootcamp-cruddur-2023/app.py at week-2-again · omenking/aws-bootcamp-cruddur-2023
