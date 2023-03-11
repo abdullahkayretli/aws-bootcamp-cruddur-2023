@@ -27,25 +27,9 @@
 
 ***
 ## Instrument Honeycomb with OTEL
+
 Click [here](https://docs.honeycomb.io/quickstart/#step-3-instrument-your-application-to-send-telemetry-data-to-honeycomb) to see the quickstart guide from HoneyComb documantation. We will follow the steps for python.
-
-### Step 1: Sign Up for Honeycomb
-I created the a free bootcamper account at honeycomb.io
-### Step 2: Instrument Your Application to Send Telemetry Data to Honeycomb
-
-- Install Packages
-To install these we will add them to the requirement.txt file and during the docker compose it will be installed.
-```
-opentelemetry-api
-opentelemetry-sdk
-opentelemetry-exporter-otlp-proto-http
-opentelemetry-instrumentation-flask
-opentelemetry-instrumentation-requests
-```
-
-
-
-- Set the API Key and Service Name
+### Set the API Key and Service Name at gitpod
 You'll need to grab the API key from your honeycomb account:
 
 ```
@@ -65,6 +49,51 @@ OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
 OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
 OTEL_SERVICE_NAME: "${HONEYCOMB_SERVICE_NAME}"
 ```
+
+### Instrument Your Application to Send Telemetry Data to Honeycomb
+
+- Install Packages
+To install these we will add them to the requirement.txt file and during the docker compose it will be installed.
+```sh
+#requirement.txt
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-exporter-otlp-proto-http
+opentelemetry-instrumentation-flask
+opentelemetry-instrumentation-requests
+
+# to install all above run the command in the correct directory
+pip install -r requirements.txt
+pip install --upgrade pip
+```
+- Initialize 
+Create a new file, tracing.py or add the following code to app,py. This will create and initialize a tracer and Flask instrumentation to send data to Honeycomb:
+
+Copy
+```sh
+# tracing.py
+
+from opentelemetry import trace
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
+# Initialize tracing and an exporter that can send data to Honeycomb
+provider = TracerProvider()
+processor = BatchSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+
+# Initialize automatic instrumentation with Flask
+app = flask.Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+```
+
+
 
 Requirement is updated 
 
