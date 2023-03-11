@@ -92,14 +92,11 @@ app = flask.Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
 ```
+### Install Containers with Docker
 
+- NPM install to the frontend
+```
+npm i
+```
 
-
-Requirement is updated 
-
-
-
-....
-
-npi install to the frontend
-docker-compose up
+- docker-compose up
