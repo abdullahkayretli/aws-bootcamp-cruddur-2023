@@ -133,3 +133,11 @@ with tracer.start_as_current_span("mock-data"):
 ```
 ![Alt text](../_docs/assets/Honeycomb%20Spans%202.png)
 
+### Set Attribute on Span
+
+```sh
+# under with tracer.start...
+span = trace.get_current_span() #newly added
+now = datetime.now(timezone.utc).astimezone() # was in the code already
+span.set_attribute("app.now", now.isoformat()) #newly added
+```
