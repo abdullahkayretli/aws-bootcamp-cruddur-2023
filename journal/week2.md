@@ -119,3 +119,17 @@ https://4567-abdullahkay-awsbootcamp-bpuzll0t21m.ws-us90.gitpod.io/api/activitie
 ### Troubleshooting
 -Make sure you are using the correct HoneyComb API key. To make sure you can check via:
 http://honeycomb-whoami.glitch.me/
+
+
+### Creating Spans 
+[click for more](https://docs.honeycomb.io/getting-data-in/opentelemetry/python/)
+
+```sh
+tracer = trace.get_tracer("home.activities")
+
+# Home-activities.py-under def run()
+with tracer.start_as_current_span("mock-data"):
+
+```
+![Alt text](../_docs/assets/Honeycomb%20Spans%202.png)
+
