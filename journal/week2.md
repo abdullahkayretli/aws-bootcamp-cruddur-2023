@@ -221,3 +221,6 @@ We need to add these two env vars to our backend-flask in our docker-compose.yml
       AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
       AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
 ```
+Then run the docker file and check the logs of the containers.
+Here is the screenshot from console.
+![Alt text](../_docs/assets/AWS%20Xray%20Tracing.png)
