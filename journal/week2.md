@@ -145,3 +145,7 @@ span.set_attribute("app.now", now.isoformat()) #newly added
 ![Alt text](../_docs/assets/Honeycomb%20query.png)
 - Heatmap (duration_ms)-P90(duration_ms)
 ![Alt text](../_docs/assets/Honeycomb%20query%202.png)
+
+
+## X-Ray
+
