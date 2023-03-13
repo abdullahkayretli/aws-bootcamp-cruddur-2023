@@ -224,3 +224,19 @@ We need to add these two env vars to our backend-flask in our docker-compose.yml
 Then run the docker file and check the logs of the containers.
 Here is the screenshot from console.
 ![Alt text](../_docs/assets/AWS%20Xray%20Tracing.png)
+
+
+### Start a custom segment/subsegment
+Using context managers for implicit exceptions recording:
+
+from aws_xray_sdk.core import xray_recorder
+
+with xray_recorder.in_segment('segment_name') as segment:
+    # Add metadata or annotation here if necessary
+    segment.put_metadata('key', dict, 'namespace')
+    with xray_recorder.in_subsegment('subsegment_name') as subsegment:
+        subsegment.put_annotation('key', 'value')
+        # Do something here
+    with xray_recorder.in_subsegment('subsegment2') as subsegment:
+        subsegment.put_annotation('key2', 'value2')
+        # Do something else 
