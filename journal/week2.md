@@ -149,3 +149,58 @@ span.set_attribute("app.now", now.isoformat()) #newly added
 
 ## X-Ray
 
+[AWS SDK for Python - API references - X-Ray](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/xray.html)
+[AWS-Xray-SDK-Python github](https://github.com/aws/aws-xray-sdk-python)
+
+Add to the requirements.txt
+```sh
+aws-xray-sdk
+```
+Install pythonpendencies
+```sh
+pip install -r requirements.txt
+```
+Add to app.py
+```sh
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
+```
+
+Setup AWS X-Ray Resources
+Add aws/json/xray.json
+```json
+{
+  "SamplingRule": {
+      "RuleName": "Cruddur",
+      "ResourceARN": "*",
+      "Priority": 9000,
+      "FixedRate": 0.1,
+      "ReservoirSize": 5,
+      "ServiceName": "Cruddur",
+      "ServiceType": "*",
+      "Host": "*",
+      "HTTPMethod": "*",
+      "URLPath": "*",
+      "Version": 1
+  }
+}
+```
+Run the following command at AWS CLI to create an X-Ray group
+```sh
+aws xray create-group \
+   --group-name "Cruddur" \
+   --filter-expression "service(\"backend-flask\")"
+```
+![Alt text](../_docs/assets/AWS%20X-Ray%20Group%20-%20Console.png)
+
+Create sampling rule via CLI
+```sh
+aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
+```
+![Alt text](../_docs/assets/AWS%20Xray%20Sampling%20Rule.png)
+
+
