@@ -225,7 +225,7 @@ Then run the docker file and check the logs of the containers.
 Here is the screenshot from console.
 ![Alt text](../_docs/assets/AWS%20Xray%20Tracing.png)
 
-
+***
 ### Start a custom segment/subsegment
 Using context managers for implicit exceptions recording:
 
@@ -240,3 +240,54 @@ with xray_recorder.in_segment('segment_name') as segment:
     with xray_recorder.in_subsegment('subsegment2') as subsegment:
         subsegment.put_annotation('key2', 'value2')
         # Do something else 
+
+***
+
+### CloudWatch Logs
+Add to the requirements.txt\
+More info on watchtower click [here](https://pypi.org/project/watchtower/).
+
+```sh
+#add watchtower to the requirement.txt
+#then run
+pip install -r requirements.txt
+```
+
+In app.py
+```sh
+import watchtower
+import logging
+from time import strftime
+
+
+# Configuring Logger to Use CloudWatch
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.DEBUG)
+console_handler = logging.StreamHandler()
+cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+LOGGER.addHandler(console_handler)
+LOGGER.addHandler(cw_handler)
+LOGGER.info('HomeActivities')
+```
+For error logging
+```sh
+@app.after_request
+def after_request(response):
+    timestamp = strftime('[%Y-%b-%d %H:%M]')
+    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+    return response
+```
+We'll log something in an API endpoint-Home_activities.py
+```sh
+LOGGER.info('Hello Cloudwatch! from  /api/activities/home')
+```
+
+
+Set the env var in your backend-flask for docker-compose.yml
+```sh
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+```
+![Alt text](../_docs/assets/AWS%20Cloudwatch%20Logs.png)
+
