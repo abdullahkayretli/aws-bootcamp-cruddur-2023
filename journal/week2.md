@@ -228,19 +228,20 @@ Here is the screenshot from console.
 ***
 ### Start a custom segment/subsegment
 Using context managers for implicit exceptions recording:
-
+```sh
 from aws_xray_sdk.core import xray_recorder
 
 with xray_recorder.in_segment('segment_name') as segment:
-    # Add metadata or annotation here if necessary
-    segment.put_metadata('key', dict, 'namespace')
-    with xray_recorder.in_subsegment('subsegment_name') as subsegment:
-        subsegment.put_annotation('key', 'value')
+
+# Add metadata or annotation here if necessary
+segment.put_metadata('key', dict, 'namespace')
+with xray_recorder.in_subsegment('subsegment_name') as subsegment:
+    subsegment.put_annotation('key', 'value')
         # Do something here
-    with xray_recorder.in_subsegment('subsegment2') as subsegment:
+with xray_recorder.in_subsegment('subsegment2') as subsegment:
         subsegment.put_annotation('key2', 'value2')
         # Do something else 
-
+```
 ***
 
 ### CloudWatch Logs
