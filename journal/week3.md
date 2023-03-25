@@ -114,12 +114,15 @@ const onsubmit = async (event) => {
     return false
 }
 
-let errors;
-if (cognitoErrors){
-  errors = <div className='errors'>{cognitoErrors}</div>;
-}
 
-// just before submit component
-{errors}
-
+```
+### Troubleshooting
+We have to set a password to be able to make the account active./
+Use the following AWS CLI code to reset a permenant password, then try again.
+```
+aws cognito-idp admin-set-user-password \
+  --user-pool-id <your-user-pool-id> \
+  --username <username> \
+  --password <password> \
+  --permanent
 ```
