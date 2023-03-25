@@ -242,6 +242,8 @@ with xray_recorder.in_subsegment('subsegment2') as subsegment:
         subsegment.put_annotation('key2', 'value2')
         # Do something else 
 ```
+![Alt text](../_docs/assets/AWS%20X-Ray%20Subsegments.jpg)
+
 ***
 
 ### CloudWatch Logs
