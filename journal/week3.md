@@ -1,9 +1,25 @@
 # Week 3 — Decentralized Authentication
 
+[Click for Week 3 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-3/journal/week3.md)
 
 
+- [Todo Checklist](#todo-checklist)
+- [Required work and Class Instructions](#required-work-and-class-instructions)
+- [Homework Challenge](#homework-challenges)
 
-
+***
+# Todo Checklist
+- [Watched Ashish's Week 3 - Decenteralized Authentication]	(https://youtu.be/tEJIeII66pY?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- Watch Chirag Week 3 - Spending Considerations (Not yet posted)	
+- [Setup Cognito User Pool]	(https://youtu.be/9obl7rVgzJw?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Signin Page]	(https://youtu.be/9obl7rVgzJw?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Signup Page]	(https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Confirmation Page]	(https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Recovery Page]	(https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Verify JWT token server side]	(https://youtu.be/d079jccoG-M?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Watch about different approaches to verifying JWTs]	(https://youtu.be/nJjbI4BbasU?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+***
+# Required work and Class Instructions
 
 ## Provision Cognito User Group
 Using the AWS Console we'll create a Cognito User Group
@@ -126,6 +142,8 @@ aws cognito-idp admin-set-user-password \
   --password <password> \
   --permanent
 ```
+![Alt text](../_docs/assets/Week3-Signin%20Page.png)
+
 ## Signup Page
 ```js
 import { Auth } from 'aws-amplify';
@@ -158,6 +176,7 @@ const onsubmit = async (event) => {
 }
 
 ```
+![Alt text](../_docs/assets/Week3-Signup%20Page.png)
 
 ## Confirmation Page
 ```js
@@ -194,3 +213,64 @@ const onsubmit = async (event) => {
   return false
 }
 ```
+![Alt text](../_docs/assets/Week3-Confirmation%20Page.png)
+
+## Recovery Page
+```js
+import { Auth } from 'aws-amplify';
+
+const onsubmit_send_code = async (event) => {
+  event.preventDefault();
+  setErrors('')
+  Auth.forgotPassword(username)
+  .then((data) => setFormState('confirm_code') )
+  .catch((err) => setErrors(err.message) );
+  return false
+}
+
+const onsubmit_confirm_code = async (event) => {
+  event.preventDefault();
+  setErrors('')
+  if (password == passwordAgain){
+    Auth.forgotPasswordSubmit(username, code, password)
+    .then((data) => setFormState('success'))
+    .catch((err) => setErrors(err.message) );
+  } else {
+    setErrors('Passwords do not match')
+  }
+  return false
+}
+![Alt text](../_docs/assets/Week3-Recovery%20Page.png)
+
+## Authenticating Server Side
+
+Add in the `HomeFeedPage.js` a header eto pass along the access token
+
+```js
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+  }
+```
+In the app.py
+```py
+cors = CORS(
+  app, 
+  resources={r"/api/*": {"origins": origins}},
+  headers=['Content-Type', 'Authorization'], 
+  expose_headers='Authorization',
+  methods="OPTIONS,GET,HEAD,POST"
+)
+```
+
+
+
+
+
+
+# Homework Challenges
+
+- [Medium] Decouple the JWT verify from the application code by writing a  Flask Middleware
+- [Hard] Decouple the JWT verify by implementing a Container Sidecar pattern using AWS’s official Aws-jwt-verify.js library
+- [Hard] Decouple the JWT verify process by using Envoy as a sidecar https://www.envoyproxy.io/
+- [Hard]  Implement a IdP login eg. Login with Amazon or Facebook or Apple.
+- [Easy] Implement MFA that send an SMS (text message), warning this has spend, investigate spend before considering, text messages are not eligible for AWS Credits

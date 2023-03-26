@@ -1,13 +1,13 @@
 # Week 2 — Distributed Tracing
-[**Week2 Instruction - Click here**](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
-
-- [Week 2 — Distributed Tracing](#week-2--distributed-tracing)
-  - [Todo Checklist - Observability](#todo-checklist---observability)
-  - [Homework Challenges](#homework-challenges)
-    - [Instrument Honeycomb with OTEL](#instrument-honeycomb-with-otel)
+[Click for Week 1 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
 
-## Todo Checklist - Observability
+- [Todo Checklist](#todo-checklist)
+- [Required work and Class Instructions](#required-work-and-class-instructions)
+- [Homework Challenge](#homework-challenges)
+
+
+# Todo Checklist
 
 - [Watch Week 2 Live-Stream Video](https://youtu.be/2GD9xCzRId4?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
 - [Watch Chirag Week 2 - Spending Considerations (Coming Soon)]()
@@ -18,14 +18,9 @@
 - [Integrate Rollbar and capture and error](https://youtu.be/xMBDAb5SEU4?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
   
 
-## Homework Challenges 
-
-- Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend[HARD]
-- Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span
-- Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces
-
-
 ***
+
+# Required work and Class Instructions
 ## Instrument Honeycomb with OTEL
 
 Click [here](https://docs.honeycomb.io/quickstart/#step-3-instrument-your-application-to-send-telemetry-data-to-honeycomb) to see the quickstart guide from HoneyComb documantation. We will follow the steps for python.
@@ -353,5 +348,11 @@ def rollbar_test():
     return "Hello World!"
 ```
 ![Alt text](../_docs/assets/RollBar.jpg)
+
+# Homework Challenges 
+
+- Instrument Honeycomb for the frontend-application to observe network latency between frontend and backend[HARD]
+- Add custom instrumentation to Honeycomb to add more attributes eg. UserId, Add a custom span
+- Run custom queries in Honeycomb and save them later eg. Latency by UserID, Recent Traces
 
 

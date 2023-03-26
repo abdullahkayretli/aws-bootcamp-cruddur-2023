@@ -2,7 +2,7 @@
 
 [Click for Week1 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md)
 
-- [Checklist](#todo-checklist)
+- [Todo Checklist](#todo-checklist)
 - [Required work and Class Instructions](#required-work-and-class-instructions)
 - [Homework Challenge](#homework-challenges)
 
