@@ -25,15 +25,15 @@
 
 ***
 # Todo Checklist
-- [Watched Ashish's Week 3 - Decenteralized Authentication]	(https://youtu.be/tEJIeII66pY?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- Watch Chirag Week 3 - Spending Considerations (Not yet posted)	
-- [Setup Cognito User Pool]	(https://youtu.be/9obl7rVgzJw?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- [Implement Custom Signin Page]	(https://youtu.be/9obl7rVgzJw?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- [Implement Custom Signup Page]	(https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- [Implement Custom Confirmation Page]	(https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- [Implement Custom Recovery Page]	(https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- [Verify JWT token server side]	(https://youtu.be/d079jccoG-M?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
-- [Watch about different approaches to verifying JWTs]	(https://youtu.be/nJjbI4BbasU?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Watched Ashish's Week 3 - Decenteralized Authentication](https://youtu.be/tEJIeII66pY?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- Watch Chirag Week 3 - Spending Considerations(Not yet posted)	
+- [Setup Cognito User Pool](https://youtu.be/9obl7rVgzJw?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Signin Page](https://youtu.be/9obl7rVgzJw?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Signup Page](https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Confirmation Page](https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Implement Custom Recovery Page](https://youtu.be/T4X4yIzejTc?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Verify JWT token server side](https://youtu.be/d079jccoG-M?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
+- [Watch about different approaches to verifying JWTs](https://youtu.be/nJjbI4BbasU?list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv)
 ***
 # Required work and Class Instructions
 
