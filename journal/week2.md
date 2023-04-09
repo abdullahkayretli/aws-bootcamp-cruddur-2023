@@ -1,4 +1,25 @@
 # Week 2 — Distributed Tracing
+
+<table border="1">
+  <tr>
+    <td>
+      <h2>Class Summary</h2>
+      <ul>
+        <li>Instrument our backend flask application to use Open Telemetry (OTEL) with Honeycomb.io as the provider</li>
+        <li>Run queries to explore traces within Honeycomb.io</li>
+        <li>Instrument AWS X-Ray into backend flask application</li>
+        <li>Configure and provision X-Ray daemon within docker-compose and send data back to X-Ray API</li>
+        <li>Observe X-Ray traces within the AWS Console</li>
+        <li>Integrate Rollbar for Error Logging</li>
+        <li>Trigger an error an observe an error with Rollbar</li>
+        <li>Install WatchTower and write a custom logger to send application log data to CloudWatch Log group</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
 [Click for Week 1 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-2/journal/week2.md)
 
 

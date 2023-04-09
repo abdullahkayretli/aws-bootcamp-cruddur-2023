@@ -1,5 +1,36 @@
 # Week 0 — Billing and Architecture
 
+<table border="1">
+  <tr>
+    <td>
+      <h2>Class Summary</h2>
+      <ul>
+        <li>Discussing the format of the bootcamp</li>
+        <li>Going over the business use-case of our project</li>
+        <li>Looking at an architectural diagram of what we plan to build</li>
+        <li>Showcase how to use Lucid Charts to build architectures</li>
+        <li>Talk about C4 Models</li>
+        <li>Running through the cloud services we will utilize</li>
+        <li>Testing that we can access our AWS accounts</li>
+        <li>Settings up AWS free-tier and understand how to track spend in AWS eg . AWS Budgets, AWS Cost Explorer, Billing Alarms</li>
+        <li>Understanding how to look at monthly billing reports</li>
+        <li>Launching AWS CloudShell and looking at AWS CLI</li>
+        <li>Generating AWS credentials</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+[Click for Week 0 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-0/journal/week0.md)
+
+
+- [Todo Checklist](#todo-checklist)
+- [Required work and Class Instructions](#required-work-and-class-instructions)
+- [Homework Challenge](#homework-challenges)
+
+***
+# Todo Checklist
+
 ## Reqired Homework/ Tasks:
 ***
 ### Create an Admin User
@@ -176,3 +207,6 @@ A well-architected framework is a set of best practices and guidelines that can 
 6. Choose the type of authentication you want to use. GitHub supports several methods, including text message (SMS), authenticator app, or a hardware security key.
 7. Follow the instructions for the chosen method to set up your authentication.
 ***
+
+
+[AWS Cloud Project Bootcamp — Outline](https://docs.google.com/document/d/19XMyd5zCk7S9QT2q1_Cg-wvbnBwOge7EgzgvtVCgcz0/edit#heading=h.e2l2bfky0ij2)

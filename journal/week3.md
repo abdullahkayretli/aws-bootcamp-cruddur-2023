@@ -1,5 +1,21 @@
 # Week 3 — Decentralized Authentication
 
+<table border="1">
+  <tr>
+    <td>
+      <h2>Class Summary</h2>
+      <ul>
+        <li>Provision via ClickOps a Amazon Cognito User Pool</li>
+        <li>Install and configure Amplify client-side library for Amazon Congito</li>
+        <li>Implement API calls to Amazon Coginto for custom login, signup, recovery and forgot password page</li>
+        <li>Show conditional elements and data based on logged in or logged out</li>
+        <li>Verify JWT Token server side to serve authenticated API endpoints in Flask Application</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
 [Click for Week 3 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-3/journal/week3.md)
 
 

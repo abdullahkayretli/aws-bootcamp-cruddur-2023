@@ -1,5 +1,27 @@
 # Week 1 — App Containerization
 
+<table border="1">
+  <tr>
+    <td>
+      <h2>Class Summary</h2>
+      <ul>
+        <li>Create a new GitHub repo</li>
+        <li>Launch the repo within a Gitpod workspace</li>
+        <li>Configure Gitpod.yml configuration, eg. I’m VSCode Extensions</li>
+        <li>Clone the frontend and backend repo</li>
+        <li>Explore the codebases</li>
+        <li>Ensure we can get the apps running locally</li>
+        <li>Write a Dockerfile for each app</li>
+        <li>Ensure we get the apps running via individual container</li>
+        <li>Create a docker-compose file</li>
+        <li>Ensure we can orchestrate multiple containers to run side by side</li>
+        <li>Mount directories so we can make changes while we code</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
 [Click for Week1 Instruction](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1/journal/week1.md)
 
 - [Todo Checklist](#todo-checklist)
