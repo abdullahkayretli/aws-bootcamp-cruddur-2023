@@ -267,9 +267,21 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 ```
+### to test that it will pass the authentication
+Paste this in to app.py 
+```js
+  //under "@app.route("/api/activities/home", methods=['GET'])"
+  app.logger.debug('AUTH HEADER')
+  app.logger.debug(
+    request.headers.get('Authorization')
+  )
+```
+## Update Dockerfile
 
-
-
+```dockerfile
+AWS_COGNITO_USER_POOL_ID: "AWS-region"
+AWS_COGNITO_USER_POOL_CLIENT_ID: "---your client id---" 
+```
 
 
 # Homework Challenges
