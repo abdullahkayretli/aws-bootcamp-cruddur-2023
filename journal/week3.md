@@ -251,6 +251,12 @@ Add in the `HomeFeedPage.js` a header eto pass along the access token
     Authorization: `Bearer ${localStorage.getItem("access_token")}`
   }
 ```
+### to get http headers in flask
+```js
+from flask import request
+request.headers.get('your-header-name') //"authorization" is the header name
+```
+
 In the app.py
 ```py
 cors = CORS(
@@ -261,19 +267,10 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 ```
-### Pass the heaser in HomeFeedPage.js for authorization
-```js
-headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`
-        },
-```
 
 
-### to get http headers in flask
-```js
-from flask import request
-request.headers.get('your-header-name') //"authorization" is the header name
-```
+
+
 
 # Homework Challenges
 
